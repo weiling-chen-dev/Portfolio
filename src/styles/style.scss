@@ -1,0 +1,568 @@
+@import "./abstracts/config";
+@import "./abstracts/colors";
+@import "./abstracts/mixins";
+@import "./abstracts//mixins";
+@import "./components//button.scss";
+
+body {
+  background-color: $primary-black;
+  color: $primary-white;
+  padding: 1rem;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  height: 30vh;
+
+  transition: ease-in-out;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+  }
+  &__name {
+    align-content: flex-end;
+  }
+  &__lastName {
+    align-content: flex-start;
+    letter-spacing: 0.25rem;
+    font-size: 5vh;
+  }
+}
+
+// ===========================
+//    Navbar
+// ===========================
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__list {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  &__item1 {
+    @include round-square-hover-shrink();
+
+    background-color: $accent-blue;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    display: flex;
+    align-items: flex-end;
+    h3 {
+      color: $primary-white;
+    }
+    .icon {
+      font-size: 1.7rem;
+      color: $primary-white;
+    }
+    &:hover {
+      .my-scroll-text1,
+      .my-scroll-text2 {
+        animation-play-state: paused;
+      }
+    }
+  }
+  &__item2 {
+    @include round-square-hover-shrink();
+
+    background-color: $primary-white;
+    grid-column-start: 1;
+    display: flex;
+    align-items: flex-end;
+    h3 {
+      color: $primary-black;
+    }
+    .icon {
+      font-size: 1.3rem;
+      color: $primary-black;
+    }
+    @include hover-to-show-the-text-animate();
+    // .my-text-animation{
+    //     display: none;
+    // }
+    // &:hover{
+    //     .nav__content_below{
+    //         visibility: hidden;
+    //     }
+    //     .my-text-animation{
+    //         display: flex;
+    //     }
+    //     .my-scroll-text1,.my-scroll-text2{
+    //         animation-timing-function:linear;
+    //     }
+
+    // }
+  }
+  &__item3 {
+    @include round-square-hover-shrink();
+
+    background-color: $bg-grey-white;
+    grid-column-start: 2;
+    border-radius: $border-radius;
+    display: flex;
+    align-items: flex-end;
+    h3 {
+      color: $primary-white;
+    }
+    .icon {
+      font-size: 1.2rem;
+      color: $primary-white;
+    }
+    @include hover-to-show-the-text-animate();
+  }
+  &__item4 {
+    @include round-square-hover-shrink();
+
+    background-color: $accent-yellow;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    border-radius: $border-radius;
+    display: flex;
+    align-items: flex-end;
+    hr {
+      color: $accent-purple;
+    }
+    h3 {
+      color: $primary-black;
+    }
+    .icon {
+      font-size: 1.2rem;
+      color: $primary-black;
+    }
+    @include hover-to-show-the-text-animate();
+  }
+  &__content_below {
+    width: 100%;
+    margin: 0rem 2rem 2.2rem 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
+  }
+}
+
+.my-text-animation {
+  overflow: hidden;
+  display: flex;
+  top: 0;
+  left: 0;
+  align-items: center;
+  height: 100%;
+  white-space: nowrap;
+  position: absolute;
+  flex-direction: row;
+  width: 100%;
+
+  pointer-events: none;
+}
+
+.my-scroll-text1 {
+  font-size: 60px;
+  margin-bottom: 6px;
+  position: relative;
+  display: block;
+  letter-spacing: -0.2rem;
+  color: $primary-white;
+
+  animation: animate 14s -14s ease-in infinite;
+}
+.my-scroll-text2 {
+  font-size: 60px;
+  margin-bottom: 6px;
+  position: relative;
+  display: block;
+  letter-spacing: -0.2rem;
+  color: $primary-white;
+
+  animation: animate2 14s -7s ease-in infinite;
+}
+
+@keyframes animate {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes animate2 {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-200%);
+  }
+}
+
+// ===========================
+//    About me
+// ===========================
+
+.about {
+  @include round-square($bg-grey-white, $accent-purple);
+  .text-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  h1 {
+    font-size: 3rem;
+  }
+}
+
+.personalities {
+  overflow: hidden;
+  position: relative;
+  transform: translateX(0);
+}
+
+.personality {
+  transition: ease-in-out;
+
+  z-index: 1;
+
+  @include round-square($bg-grey-white, $accent-purple);
+
+  height: fit-content;
+  gap: 2rem;
+  position: relative;
+
+  align-items: center;
+  .icon {
+    font-size: 1.9rem;
+  }
+  .text-container {
+    width: 70vw;
+    h3 {
+      margin-bottom: 0.75rem;
+    }
+  }
+
+  &__show {
+    transform: translateX(0);
+  }
+  &__disappear {
+    transform: translateX(60%);
+  }
+}
+
+.personality-decoration {
+  visibility: hidden;
+  @include round-square($accent-purple, $bg-grey-white);
+
+  height: 20rem;
+  position: absolute;
+  gap: 2rem;
+  top: 0;
+  right: 0;
+
+  justify-content: center;
+  align-items: center;
+  .icon {
+    font-size: 20rem;
+    color: $bg-grey-white;
+  }
+
+  z-index: 2;
+}
+
+// ===========================
+//    Contact
+// ===========================
+
+.contact {
+  @include round-square($bg-grey-yellow, $accent-yellow);
+  gap: 3rem;
+  justify-content: center;
+  &__text_container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 3rem;
+
+    & > * {
+      flex-basis: 100%;
+    }
+  }
+  &__links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    flex-basis: 100%;
+  }
+  &__link {
+    text-align: center;
+
+    @include button($bg-grey-yellow, $accent-yellow);
+    p {
+      font-weight: 400;
+    }
+  }
+  &__social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  &__social-link {
+    @include button($accent-yellow, $bg-grey-yellow);
+    .icon {
+      font-size: 2.5rem;
+    }
+  }
+}
+
+// ===========================
+//    Email form
+// ===========================
+
+.form {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+
+  &__name_email_subject {
+    display: flex;
+    flex-direction: column;
+    & > * {
+      @include round-square($bg-grey-yellow, $accent-yellow);
+      border: transparent;
+    }
+    ::placeholder {
+      color: $accent-yellow;
+    }
+    input:focus {
+      outline: $accent-yellow solid 1px;
+    }
+    input:focus::placeholder {
+      color: transparent;
+    }
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+      -webkit-text-fill-color: $accent-yellow !important;
+      -webkit-box-shadow: 0 0 0px 1000px $bg-grey-yellow inset !important;
+    }
+  }
+  textarea {
+    resize: none;
+    width: 100%;
+    @include round-square($bg-grey-yellow, $accent-yellow);
+    border: transparent;
+
+    &:focus {
+      outline: $accent-yellow solid 1px;
+    }
+    &::placeholder {
+      color: $accent-yellow;
+    }
+    &:focus::placeholder {
+      color: transparent;
+    }
+  }
+  button {
+    @include round-square-hover-shrink();
+    @include round-square($accent-yellow, $bg-grey-yellow);
+    border: transparent;
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    h5 {
+      font-weight: 500;
+    }
+    .icon {
+      font-size: 1.25rem;
+    }
+  }
+
+  &__email-sent-h1 {
+    color: $accent-yellow;
+    padding: 1.25rem;
+  }
+}
+
+// ===========================
+//    Projects
+// ===========================
+
+.jobster {
+  @include singleProject(#f0f4f8, #3b81f6);
+}
+.cocktailDB {
+  @include singleProject(#f0f4f8, #11b981);
+}
+
+// ===========================
+//    Footer
+// ===========================
+
+.footer {
+  margin-top: 2rem;
+  height: 15vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  &__content {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+  }
+  &__designerLogoWhite {
+    height: 1.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    :hover {
+      display: none;
+    }
+  }
+  &__designerLogoYellow {
+    height: 1.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: ease-in;
+    &:hover {
+      filter: brightness(2);
+    }
+  }
+}
+
+// ===========================
+//    Media query
+// ===========================
+
+@media (min-width: 1024px) {
+  .nav {
+    &__list {
+      height: 60vh;
+    }
+
+    &__item1 {
+      grid-column-end: 3;
+    }
+    &__item2 {
+      grid-column-start: 3;
+      grid-column-end: 4;
+      grid-row-start: 1;
+    }
+    &__item3 {
+      grid-column-start: 4;
+      grid-column-end: 5;
+      grid-row-start: 1;
+    }
+    &__item4 {
+      grid-column-start: 3;
+      grid-column-end: 5;
+      grid-row-start: 2;
+    }
+  }
+  .header {
+    height: 40vh;
+  }
+
+  .personality {
+    height: 20rem;
+
+    max-width: 60vw;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+
+    .text-container {
+      max-width: 45vw;
+    }
+    .icon {
+      visibility: hidden;
+    }
+  }
+  .personality-decoration {
+    width: 40vw;
+    visibility: visible;
+  }
+
+  .contact {
+    justify-content: flex-start;
+    &__links {
+      flex-direction: row;
+      justify-content: flex-start;
+    }
+    &__link {
+      width: fit-content;
+    }
+    &__social-links {
+      justify-content: flex-start;
+    }
+  }
+
+  .form {
+    height: 70vh;
+    gap: 0.5rem;
+
+    flex-direction: row;
+    flex: auto;
+
+    &__name_email_subject {
+      height: 15vh;
+      & > * {
+        font-size: 1rem;
+      }
+    }
+    &__name_email_subject_textarea {
+      flex-basis: 100%;
+
+      .textarea {
+        font-size: 1rem;
+        height: 55vh;
+        resize: none;
+      }
+    }
+    &__name_email_subject {
+      gap: 0.5rem;
+      flex-direction: row;
+
+      & > * {
+        flex-basis: 100%;
+      }
+    }
+    button {
+      height: 70vh;
+      flex-basis: 30%;
+      .icon {
+        font-size: 2rem;
+      }
+      h3 {
+        font-size: 1.25rem;
+      }
+    }
+    &__email-sent-h1 {
+      width: 30vw;
+      color: $accent-yellow;
+      padding: 1.25rem;
+    }
+  }
+  .footer {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+  }
+}

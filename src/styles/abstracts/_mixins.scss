@@ -1,0 +1,91 @@
+@import "../abstracts//config";
+
+@mixin round-square($bg-color, $color) {
+  background-color: $bg-color;
+  color: $color;
+  border-radius: $border-radius;
+  display: flex;
+
+  padding: 2.2rem 2rem 2.2rem 2rem;
+  flex-flow: wrap;
+  margin-top: 0.5rem;
+}
+
+@mixin round-square-hover-shrink() {
+  position: relative;
+  transition: ease-out 0.35s;
+  border-radius: $border-radius;
+  &:hover {
+    transform: scale(0.95, 0.95);
+  }
+}
+
+@mixin hover-to-show-the-text-animate() {
+  .my-text-animation {
+    display: none;
+  }
+  &:hover {
+    .nav__content_below {
+      visibility: hidden;
+    }
+    .my-text-animation {
+      display: flex;
+    }
+
+    .my-scroll-text1,
+    .my-scroll-text2 {
+      animation-timing-function: linear;
+      font-size: 3rem;
+      font-weight: 500;
+    }
+  }
+}
+
+@mixin singleProject($bg-color, $color) {
+  @include round-square($bg-color, $color);
+
+  flex-direction: column;
+  gap: 2.25rem;
+
+  span {
+    color: $color;
+  }
+  .project {
+    &__info {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      .icon {
+        font-size: 1.75rem;
+        margin-left: 0.25rem;
+      }
+    }
+
+    &__buttons-container {
+      display: flex;
+      gap: 0.75rem;
+      flex-direction: column;
+    }
+
+    &__button {
+      @include button($color, $bg-color);
+      display: flex;
+      gap: 0.5rem;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      .icon {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  @media (min-width: 1024px) {
+    gap: 4rem;
+    .project__buttons-container {
+      flex-direction: row;
+    }
+  }
+}
